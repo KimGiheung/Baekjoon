@@ -1,14 +1,8 @@
 import sys
+s = sys.stdin.read()
 
-text = sys.stdin.read()
-text = text.replace('\n', '').replace(' ', '')
-
-alpha = [0 for i in range(26)]
-
-for i in range(len(text)):
-  word = ord(text[i]) - 97
-  alpha[word] += 1
-
-for i in range(26):
-  if alpha[i] == max(alpha):
-    print(chr(97+i), end='')
+a = [0] * 26
+for i in s:
+    if i.islower():
+        a[ord(i) - 97] += 1
+print(*[chr(i+97) for i in range(26) if a[i] == max(a)], sep = '')
